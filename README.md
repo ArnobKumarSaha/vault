@@ -39,6 +39,9 @@ export VAULT_ADDR='http://127.0.0.1:8200'
 vault secrets enable pki
 ```
 
+```bash
+vault policy read vault-issuer
+```
 
 ```bash
 vault write -field=certificate pki/root/generate/internal \
@@ -48,7 +51,16 @@ vault write -field=certificate pki/root/generate/internal \
 ```
 
 ```bash
+vault write pki/roles/example-dot-com \
+    allowed_domains=example-dot-com \
+    allow_subdomains=true \
+    max_ttl=72h \
+    issuer_ref=82797184-6706-1c35-3172-ec6d39781865
+```
+
+```bash
 vault read pki/config/issuers
+vault delete pki/config/issuers
 ```
 
 ```bash

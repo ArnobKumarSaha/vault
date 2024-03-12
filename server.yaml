@@ -27,9 +27,16 @@ spec:
   #     exporter:
   #       resources: {}
   terminationPolicy: Delete
+  podTemplate:
+    spec:
+      readinessProbe:
+        failureThreshold: 5
+        httpGet:
+          path: /v1/sys/health?standbyok=true&perfstandbyok=true
+          port: 8200
+          scheme: HTTP
+        initialDelaySeconds: 10
+        periodSeconds: 20
+        successThreshold: 1
+        timeoutSeconds: 15
 
-
-# kubestash_session_repositories{session="full-backup",repository="repo1"} 
-# kubestash_session_repositories{session="full-backup",repository="repo2"} 
-
-# kubestash_session_repositories{session="specific-backup",repository="repo1"} 
