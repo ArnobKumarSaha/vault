@@ -1,0 +1,35 @@
+apiVersion: kubevault.com/v1alpha2
+kind: VaultServer
+metadata:
+  name: vault
+  namespace: demo
+spec:
+  allowedSecretEngines:
+    namespaces:
+      from: All
+  version: "1.13.3"
+  replicas: 3
+  backend:
+    raft:
+      storage:
+        resources:
+          requests:
+            storage: 1Gi
+  unsealer:
+    secretShares: 5
+    secretThreshold: 3
+    mode:
+      kubernetesSecret:
+        secretName: vault-keys
+  # monitor:
+  #   agent: prometheus.io
+  #   prometheus:
+  #     exporter:
+  #       resources: {}
+  terminationPolicy: Delete
+
+
+# kubestash_session_repositories{session="full-backup",repository="repo1"} 
+# kubestash_session_repositories{session="full-backup",repository="repo2"} 
+
+# kubestash_session_repositories{session="specific-backup",repository="repo1"} 
