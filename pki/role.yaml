@@ -1,0 +1,15 @@
+apiVersion: engine.kubevault.com/v1alpha1
+kind: PKIRole
+metadata:
+  name: pki-role
+  namespace: demo
+spec:
+  secretEngineRef:
+    name: pki-root
+  allowedDomains:
+  - "kubevault.com"
+  allowSubdomains: true
+  maxTTL: "720h"
+  additionalPayload:
+    "allow_any_name": "true"
+  

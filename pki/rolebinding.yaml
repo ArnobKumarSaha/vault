@@ -33,6 +33,12 @@ subjects:
   - kind: ServiceAccount
     name: vault-issuer
     namespace: cert-manager
+  - kind: ServiceAccount
+    name: vault-issuer
+    namespace: default
+  - kind: ServiceAccount
+    name: issuer
+    namespace: default
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role

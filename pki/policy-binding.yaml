@@ -1,0 +1,19 @@
+apiVersion: policy.kubevault.com/v1alpha1
+kind: VaultPolicyBinding
+metadata:
+  name: vault-issuer
+  namespace: demo
+spec:
+  vaultRef:
+    name: vault
+  vaultRoleName: vault-issuer
+  policies:
+  - name: vault-issuer
+  subjectRef:
+    kubernetes:
+      serviceAccountNames:
+        - "vault-issuer"
+      serviceAccountNamespaces:
+        - "cert-manager"
+        - "default"
+      ttl: "1m"

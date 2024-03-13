@@ -4,7 +4,7 @@ metadata:
   name: vault-issuer
 spec:
   vault:
-    path: pki/sign/example-dot-com
+    path: k8s.11580b02-2ee0-4aa9-9288-d396157b5d3e.pki.demo.pki-root/sign/k8s.11580b02-2ee0-4aa9-9288-d396157b5d3e.demo.pki-role
     server: http://vault.demo.svc:8200
     auth:
       kubernetes:

@@ -1,10 +1,10 @@
 apiVersion: kubedb.com/v1alpha2
 kind: MongoDB
 metadata:
-  name: alone7
+  name: m4
   namespace: demo
 spec:
-  version: "7.0.5"
+  version: "4.4.26"
   terminationPolicy: WipeOut
   storage:
     accessModes:
@@ -19,7 +19,8 @@ spec:
       kind: ClusterIssuer
       name: vault-issuer
   clusterAuthMode: x509
-  # monitor:
+  monitor:
+    agent: prometheus.io/builtin
   #   agent: prometheus.io/operator
   #   prometheus:
   #     serviceMonitor:

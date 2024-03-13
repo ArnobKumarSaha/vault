@@ -1,0 +1,15 @@
+apiVersion: engine.kubevault.com/v1alpha1
+kind: SecretEngine
+metadata:
+  name: pki-root
+  namespace: demo
+spec:
+  vaultRef:
+    name: vault
+    namespace: demo
+  pki:
+    isRootCA: true
+    commonName: "kubevault.com"
+    ttl: "87600h"
+  # maxLeaseTTL: "487600h"
+

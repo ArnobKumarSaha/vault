@@ -1,0 +1,13 @@
+apiVersion: policy.kubevault.com/v1alpha1
+kind: VaultPolicy
+metadata:
+  name: vault-issuer
+  namespace: demo
+spec:
+  vaultRef:
+    name: vault
+  vaultPolicyName: vault-issuer
+  policyDocument: |
+    path "k8s.11580b02-2ee0-4aa9-9288-d396157b5d3e.pki.demo.pki-root*"                                        { capabilities = ["read", "list"] }
+    path "k8s.11580b02-2ee0-4aa9-9288-d396157b5d3e.pki.demo.pki-root/sign/k8s.11580b02-2ee0-4aa9-9288-d396157b5d3e.demo.pki-role"    { capabilities = ["create", "update"] }
+    path "k8s.11580b02-2ee0-4aa9-9288-d396157b5d3e.pki.demo.pki-root/issue/k8s.11580b02-2ee0-4aa9-9288-d396157b5d3e.demo.pki-role"   { capabilities = ["create"] }

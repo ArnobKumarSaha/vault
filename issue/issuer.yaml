@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: vault-issuer
+  namespace: default
+spec:
+  vault:
+    server: http://vault.demo:8200
+    path: k8s.kubevault.com.pki.demo.pki-root/sign/k8s.kubevault.com.demo.pki-role
+    auth:
+      kubernetes:
+        mountPath: /v1/auth/kubernetes
+        role: vault-issuer
+        secretRef:
+          name: issuer-token-lmzpj
+          key: token
