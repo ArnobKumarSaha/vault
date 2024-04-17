@@ -1,0 +1,14 @@
+apiVersion: engine.kubevault.com/v1alpha1
+kind: MongoDBRole
+metadata:
+  name: mg-role
+  namespace: demo
+spec:
+  secretEngineRef:
+    name: mg-engine
+  creationStatements:
+  - '{ "db": "aa", "roles": [{ "role": "dbOwner" }] }'
+  revocationStatements:
+  - '{ "db": "aa", "roles": [{ "role": "dbOwner" }] }'
+  defaultTTL: "1h"
+  maxTTL: "100h"
